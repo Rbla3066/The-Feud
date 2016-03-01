@@ -80,4 +80,8 @@ html, body {
 	font-family: 'Black Ops One', cursive;
 	font-size: 36px;
 }
+.button {
+	color: blue;
+	font-size: 24px;
+}
 
