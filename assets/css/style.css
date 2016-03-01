@@ -13,16 +13,26 @@
 #right {
 	float: right;
 }
+#header {
+	margin: auto;
+	text-align: center;
+	font-size: 48px;
+	background-color: yellow;
+}
 #container {
 	background-color: blue;
-	height: 700px;
-	width: 1000px;
+	background-size: inherit;
+	height: 560px;
 }
 #board {
 	width: 408px;
 	height: 216px;
 	background-color: red;
 	margin: auto;
+}
+html, body {
+	width: 100%;
+	height: 100%;
 }
 #clock {
 	text-align: center;
@@ -35,9 +45,10 @@
 	text-align: center;
 	position: relative;
 	margin: auto;
-	top: -200px;
+	top: -240px;
 	font-size: 36px;
 	color: red;
+	font-weight: bold;
 }
 #info {
 	text-align: center;
@@ -45,9 +56,10 @@
 }
 #info-question {
 	text-align: center;
-	height: 25px;
+	height: 50px;
 	margin: auto;
 	font-size: 24px;
+	padding-top: 20px;
 	color: black;
 }
 #input {
@@ -60,9 +72,6 @@
 	margin: auto;
 	padding-top: 25px;
 	height: 50px;
-}
-#container{
-	margin: auto;
 }
 #guess {
 	font-size: 24px;
