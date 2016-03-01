@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Feud</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="assets/css/reset.css">
+</head>
+<body>
+<div id="container">
+	<div id="input-screen" style="visibility: hidden">
+	<input type="text" id="input">
+	<button id="guess">Guess</button>
+	</div>
+	<div id="clock" style="visibility: hidden"></div>
+	<div id="board" style="">
+		<div id="left">
+			<div id="answer0" class="answer"></div>
+			<div id="answer1" class="answer"></div>
+			<div id="answer2" class="answer"></div>
+			<div id="answer3" class="answer"></div>
+		</div>
+		<div id="right">
+			<div id="answer4" class="answer"></div>
+			<div id="answer5" class="answer"></div>
+			<div id="answer6" class="answer"></div>
+			<div id="answer7" class="answer"></div>
+		</div>
+	</div>
+	<div id="info" style="">
+		<div id="info-question" style="visibility: hidden"></div>
+		<div id="score">0</div>
+		<button id="start" style="display: initial">Start</button>
+		<button id="next" style="display: none">Next</button>
+		<div id="xes"></div>
+	</div>
+	<div id="sounds"></div>
+</div>
+<script type="text/javascript">
+// each game board is divided into an array of answers. each answer has an array of
+// the formal name, points, a bool to test if it has been answered, and 
+// keywords that will lead to the answer. 
+var child = ["Children", 16, false, "kids", "kid", "children", "child", "daughter", "son"];
+var car = ["Car", 14, false, "vehicle", "car", "autmobile", "wheels"];
+var pet = ["Pet", 10, false, "dog", "cat", "pet"];
+var house = ["House", 10, false, "apartment", "house", "condo", "place", "room"];
+var comp = ["Computer", 9, false, "labtop", "desktop", "computer", "tablet"];
+var me = ["Myself", 8, false, "me", "i", "myself"];
+var cell = ["Cell Phone", 5, false, "phone", "mobile", "cell", "iphone", "android"];
+var spouse = ["Spouse", 4, false, "wife", "husband", "partner", "spouse"];
+var game10 = ["Tell me something of yours that you swear is possessed.", child, car, pet, house, comp, me, cell, spouse];
+var clothes = ["Old Clothes/Shoes", 38, false, "clothes", "shoes", "shirt", "pants", "shirts"];
+var pet2 = ["Pet/Animal", 8, false, "dog", "cat", "pet", "animal"];
+var trash = ["Trash", 7, false, "trash", "garbage", "waste"];
+var mistress = ["Mistress", 5, false, "mistress", "girl", "girlfriend", "side", "affair"];
+var mags = ["Magazines/Books", 5, false, "magazine", "magazines", "book", "books"];
+var adult = ["Adult Video", 4, false, "videos", "video", "adult", "porn", "porno"];
+var car2 = ["Car/Convertable", 4, false, "car", "convertable", "autmobile", "vehicle"];
+var tude = ["Bad Attitude", 4, false, "bad", "attitude", "temper", "mood"];
+var game9 = ["Name something a wife tells her husband to get rid of.", clothes, pet2, trash, mistress, mags, adult, car2, tude];
+var college = ["School/College", 56, false, "school", "college", "class"];
+var church = ["Church", 26, false, "church", "sunday", "mass", "temple"];
+var family = ["Family Function", 9, false, "family", "together", "party", "birthday"];
+var doctor = ["Dentist/Doctor", 4, false, "dentist", "doctor"];
+var store = ["Grocery Store", 2, false, "grocery", "store", "market", "mart"];
+var game1 = ["Name someplace a teenager complains about having to go to.", college, church, family, doctor, store];
+var money = ["Money/Status", 57, false, "money", "status", "wealth"];
+var lust = ["Lust/Infatuation", 34, false, "lust", "infatuation", "attraction", "sex", "looks", "inpulse"];
+var child2 = ["Children/Pregnant", 5, false, "kids", "kid", "children", "child", "daughter", "son", "pregnant"];
+var expect = ["People Expect It", 2, false, "told", "expect", "expected", "said", "wanted"];
+var spite = ["To Spite Parents", 2, false, "not", "didn't"];
+var game2 = ["Love is the right reason to get married. Name one of the wrong reasons.", money, lust, child2, expect, spite];
+var cook = ["Cook for them", 47, false, "cook", "breakfast", "lunch", "dinner", "food"];
+var laundry = ["Laundry/Ironing", 39, false, "laundry", "iron", "ironing", "wash", "clothes"];
+var money2 = ["Loan Them Money", 7, false, "money", "cash", "borrow", "loan"];
+var shop = ["Shop for Them", 2, false, "shop", "shopping", "mall", "buy"];
+var ride = ["Give Them A Ride", 2, false, "drive", "ride", "take"];
+var sing = ["Sing for Them", 2, false, "sing", "sleep", "lullaby"];
+var game3 = ["Name something grown men still ask their mommy to do for them.", cook, laundry, money2, shop, ride, sing];
+var movie = ["Watch TV/Movie", 77, false, "movie", "tv", "television", "netflix"];
+var vgames = ["Play Games", 10, false, "play", "games", "game", "xbox", "videogames"];
+var sleep = ["Sleep/Relax", 5, false, "sleep", "nap", "relax", "lay", "chill"];
+var cook2 = ["Cook/Eat Dinner", 3, false, "eat", "cook", "dinner", "lunch"];
+var love = ["Make Love", 2, false, "love", "sex", "whoopie", "bed"];
+var friends = ["Have Friends Over", 2, false, "friends", "party", "together", "over"];
+var game4 = ["What do people do at home on a Saturday night if they can't afford to go out?", movie, vgames, sleep, cook2, love, friends];
+var games = [game1, game2, game3, game4, game9, game10];
+var gameNum = 0;
+var wrongAnswers = 0;
+$("#start").click(function() {
+	$("#start").attr("style", "display: none");
+	newBoard();
+});
+function guessAns(){
+	var ansbool = false;
+	var answerArr = ($("#input").val()).split(" ");
+	for(var k=0; k<answerArr.length; k++){
+		for(var i=1; i<games[gameNum].length; i++){
+			for(var j=3; j<games[gameNum][i].length; j++){
+				if(answerArr[k].toLowerCase() == games[gameNum][i][j] && games[gameNum][i][2] == false){
+					$("#sounds").html("<audio autoplay><source src='assets/audio/right.mp3' type='audio/mp3'></audio>");
+					$("#answer"+(i-1)).text(games[gameNum][i][0] + " " + games[gameNum][i][1]);
+					$("#clock").html("15");
+					var score = parseInt($("#score").html());
+					score += games[gameNum][i][1];
+					$("#score").html(score);
+					ansbool = true;
+					games[gameNum][i][2] = true;
+				};
+			};
+		};
+	};
+	if(ansbool == false){
+		$("#clock").html("15");
+		wrongAnswer();
+	};
+	ansbool = true;
+	for(i=1; i<games[gameNum].length; i++){
+		if(games[gameNum][i][2] == false){
+			ansbool = false;
+		}
+	}
+	if(ansbool == true){
+		$("#info-question").html("Congrats! You got all answers!");
+		var newScore = parseInt($("#score").html());
+		newScore += 200;
+		$("#score").html(newScore);
+		$("#xes").html("");
+		endGame();
+	}
+	$("#input").val("");
+}
+$("#guess").click(function() {
+	guessAns();
+});
+document.onkeyup = function(e) {
+	if(e.keyCode == 13 && $("#input").val() != ""){
+		guessAns();
+	};
+};
+$("#next").click(function() {
+	$("#next").attr("style", "display: none");
+	newBoard();
+});
+function newBoard(){
+	$("#input-screen").attr("style", "visibility: hidden");
+	$("#info-question").attr("style", "visibility: initial");
+	$("#xes").html("");
+	$(".answer").html("");
+	$("#input").val("");
+	$("#info-question").html(games[gameNum][0]);
+	wrongAnswers = 0;
+	setTimeout(function(){
+	promptAnswer();
+	}, 5000);
+};
+function promptAnswer(){
+	$("#input-screen").attr("style", "visibility: initial");
+	$("#clock").attr("style", "visibility: initial");
+	$("#clock").html("15");
+	var timer = setInterval(function(){
+		var time = parseInt($("#clock").html());
+		time--;
+		if(time == 0){
+			wrongAnswer();
+			time = 15;
+		};
+		$("#clock").html(time);
+	}, 1000);
+}
+function wrongAnswer(){
+	$("#sounds").html("<audio autoplay><source src='assets/audio/wrong.mp3' type='audio/mp3'></audio>");
+	wrongAnswers++;
+	if(wrongAnswers == 3){
+		$("#info-question").html("Sorry, you got your last strike!");
+		$("#input").val("");
+		$("#xes").html("[X][X][X]")
+		endGame();
+		return;
+	}
+	var exes = "";
+	for(var i=0; i<wrongAnswers; i++){
+		exes += "[X]";
+	};
+	$("#xes").html(exes);
+	setTimeout(function(){
+		$("#xes").html("");
+	}, 3000);
+};
+function endGame(){
+	gameNum++;
+	$("#next").attr("style", "display: initial");
+	$("#input-screen").attr("style", "visibility: hidden");
+	$("#clock").attr("style", "visibility: hidden");
+	for(var i=0; i<999; i++){
+		clearInterval(i);
+	};
+};
+</script>
+
+</body>
+</html>

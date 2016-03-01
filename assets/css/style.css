@@ -1,0 +1,74 @@
+.answer {
+	width: 200px;
+	height: 50px;
+	background-color: yellow;
+	border-style: solid;
+	border-width: 2px;
+	text-align: center;
+	color: black;
+}
+#left {
+	float: left;
+}
+#right {
+	float: right;
+}
+#container {
+	background-color: blue;
+	height: 700px;
+	width: 1000px;
+}
+#board {
+	width: 408px;
+	height: 216px;
+	background-color: red;
+	margin: auto;
+}
+#clock {
+	text-align: center;
+	margin: auto;
+	height: 40px;
+	font-size: 36px;
+	font-family: 'Black Ops One', cursive;
+}
+#xes {
+	text-align: center;
+	position: relative;
+	margin: auto;
+	top: -200px;
+	font-size: 36px;
+	color: red;
+}
+#info {
+	text-align: center;
+	margin: auto;
+}
+#info-question {
+	text-align: center;
+	height: 25px;
+	margin: auto;
+	font-size: 24px;
+	color: black;
+}
+#input {
+	text-align: center;
+	margin: auto;
+	font-size: 24px;
+}
+#input-screen{
+	text-align: center;
+	margin: auto;
+	padding-top: 25px;
+	height: 50px;
+}
+#container{
+	margin: auto;
+}
+#guess {
+	font-size: 24px;
+}
+#score {
+	font-family: 'Black Ops One', cursive;
+	font-size: 36px;
+}
+
