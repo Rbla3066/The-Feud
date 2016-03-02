@@ -9,12 +9,14 @@
 </head>
 <body>
 <div id="container">
-	<div id="header">The Feud</div>
 	<div id="input-screen" style="visibility: hidden">
 	<input type="text" id="input">
 	<button id="guess">Guess</button>
 	</div>
 	<div id="clock" style="visibility: hidden"></div>
+	<div id="photo">
+	<img src="assets/images/feudboard.jpg" id="theBoard">
+	</div>
 	<div id="board" style="">
 		<div id="left">
 			<div id="answer0" class="answer"></div>
@@ -41,8 +43,8 @@
 	<div id="footer"></div>
 </div>
 <script type="text/javascript">
-// each game board is divided into an array of answers. each answer has an array containing
-// the formal name, points, a bool to test if it has been answered, and 
+// each game board is divided into an array of answers. each answer is an array containing
+// the formal name, points, a bool to test if it has been answered before, and 
 // keywords that will lead to the answer. 
 var child = ["Children", 16, false, "kids", "kid", "children", "child", "daughter", "son"];
 var car = ["Car", 14, false, "vehicle", "car", "autmobile", "wheels"];
@@ -71,7 +73,7 @@ var game1 = ["Name someplace a teenager complains about having to go to.", colle
 var money = ["Money/Status", 57, false, "money", "status", "wealth"];
 var lust = ["Lust/Infatuation", 34, false, "lust", "infatuation", "attraction", "sex", "looks", "inpulse"];
 var child2 = ["Children/Pregnant", 5, false, "kids", "kid", "children", "child", "daughter", "son", "pregnant"];
-var expect = ["People Expect It", 2, false, "told", "family", "expect", "expected", "said", "wanted"];
+var expect = ["People Expect It", 2, false, "arranged", "told", "family", "expect", "expected", "said", "wanted"];
 var spite = ["To Spite Parents", 2, false, "spite", "not", "didn't"];
 var game2 = ["Love is the right reason to get married. Name one of the wrong reasons.", money, lust, child2, expect, spite];
 var cook = ["Cook for them", 47, false, "cook", "breakfast", "lunch", "dinner", "food"];
@@ -88,6 +90,8 @@ var cook2 = ["Cook/Eat Dinner", 3, false, "eat", "cook", "dinner", "lunch"];
 var love = ["Make Love", 2, false, "love", "sex", "whoopie", "bed"];
 var friends = ["Have Friends Over", 2, false, "friends", "party", "together", "over"];
 var game4 = ["What do people do at home on a Saturday night if they can't afford to go out?", movie, vgames, sleep, cook2, love, friends];
+
+// then each gameboard is arranged into an array, making the 3D array of games
 var games = [game1, game2, game3, game4, game9, game10];
 var gameNum = 0;
 var wrongAnswers = 0;
@@ -99,11 +103,12 @@ function guessAns(){
 	var ansbool = false;
 	var answerArr = ($("#input").val()).split(" ");
 	for(var k=0; k<answerArr.length; k++){
+		debugger;
 		for(var i=1; i<games[gameNum].length; i++){
 			for(var j=3; j<games[gameNum][i].length; j++){
 				if(answerArr[k].toLowerCase() == games[gameNum][i][j] && games[gameNum][i][2] == false){
 					$("#sounds").html("<audio autoplay><source src='assets/audio/right.mp3' type='audio/mp3'></audio>");
-					$("#answer"+(i-1)).text(games[gameNum][i][0] + " " + games[gameNum][i][1]);
+					$("#answer"+(i-1)).html("<div style='height: 50px; animation-name: flipIn; animation-duration: 0.5s; background-image: url(assets/images/answer.jpg)'><p class='answerText'>"+games[gameNum][i][0]+"</p>"+"<p class='scoreText'>"+games[gameNum][i][1]+"</p></div>");
 					$("#clock").html("15");
 					var score = parseInt($("#score").html());
 					score += games[gameNum][i][1];
@@ -122,8 +127,8 @@ function guessAns(){
 	for(i=1; i<games[gameNum].length; i++){
 		if(games[gameNum][i][2] == false){
 			ansbool = false;
-		}
-	}
+		};
+	};
 	if(ansbool == true){
 		$("#info-question").html("Congrats! You got all answers!");
 		var newScore = parseInt($("#score").html());
@@ -131,9 +136,9 @@ function guessAns(){
 		$("#score").html(newScore);
 		$("#xes").html("");
 		endGame();
-	}
+	};
 	$("#input").val("");
-}
+};
 $("#guess").click(function() {
 	guessAns();
 });
@@ -161,11 +166,11 @@ function newBoard(){
 	for(var i=0; i<8; i++){
 		var gameLength = (games[gameNum].length) - 1;
 		if(i<gameLength){
-			$("#answer"+i).html("<div style='background-color: orange; height: 50px; width: 200px'></div>");
+			$("#answer"+i).html("<div style='background-image: url(assets/images/unAnswered.jpg); height: 50px; width: 200px'><p class='answerNumber'>"+(i+1)+"</p></div>");
 		} else {
-			$("#answer"+i).html("<div style='color: red; text-align: center; margin-top: 14px'>X X X<div>");
-		}
-	}
+			$("#answer"+i).html("<div style='background-image: url(assets/images/noAnswer.jpg); height: 50px; width: 200px'><div>");
+		};
+	};
 	$("#input-screen").attr("style", "visibility: hidden");
 	$("#info-question").attr("style", "visibility: initial");
 	$("#xes").html("");
@@ -196,7 +201,7 @@ function wrongAnswer(){
 	if(wrongAnswers == 3){
 		$("#info-question").html("Sorry, you got your last strike!");
 		$("#input").val("");
-		$("#xes").html("[X][X][X]")
+		$("#xes").html("[X][X][X]");
 		endGame();
 		return;
 	}
@@ -220,7 +225,7 @@ function endGame(){
 	if(gameNum == games.length){
 		$("#next").attr("style", "display: none");
 		$("#startOver").attr("style", "display: initial");
-	}
+	};
 };
 </script>
 

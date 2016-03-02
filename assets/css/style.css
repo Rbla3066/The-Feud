@@ -1,11 +1,12 @@
 .answer {
 	width: 200px;
 	height: 50px;
-	background-color: yellow;
+	background-image: url(../images/blank.jpg);
 	border-style: solid;
 	border-width: 2px;
 	text-align: center;
 	color: black;
+	z-index: 15;
 }
 #left {
 	float: left;
@@ -13,22 +14,22 @@
 #right {
 	float: right;
 }
-#header {
-	margin: auto;
-	text-align: center;
-	font-size: 48px;
-	background-color: yellow;
-}
 #container {
-	background-color: blue;
+	background-color: purple;
 	background-size: inherit;
-	height: 560px;
+	height: 900px;
 }
 #board {
 	width: 408px;
 	height: 216px;
 	background-color: red;
 	margin: auto;
+	border-style: solid;
+	border-width: 2px;
+	position: relative;
+	z-index: 10;
+	top: -370px;
+	left: 4px;
 }
 html, body {
 	width: 100%;
@@ -40,27 +41,32 @@ html, body {
 	height: 40px;
 	font-size: 36px;
 	font-family: 'Black Ops One', cursive;
+	color: white;
 }
 #xes {
 	text-align: center;
 	position: relative;
 	margin: auto;
-	top: -240px;
+	top: -440px;
 	font-size: 36px;
 	color: red;
 	font-weight: bold;
+	z-index: 15;
+	background-color: purple;
+	width: 200px;
 }
 #info {
 	text-align: center;
 	margin: auto;
 }
 #info-question {
+	position: relative;
+	top: -200px;
 	text-align: center;
 	height: 50px;
 	margin: auto;
 	font-size: 24px;
-	padding-top: 20px;
-	color: black;
+	color: white;
 }
 #input {
 	text-align: center;
@@ -79,9 +85,61 @@ html, body {
 #score {
 	font-family: 'Black Ops One', cursive;
 	font-size: 36px;
+	position: relative;
+	top: -200px;
+	color: white;
 }
 .button {
 	color: blue;
 	font-size: 24px;
+	position: relative;
+	top: -200px;
 }
+#logo {
+	margin: auto;
+	height: 60px;
+}
+#theBoard {
+	z-index: 1;
+	position: relative;
+}
+#photo {
+	width: 800px;
+	margin: auto;
+}
+.answerText {
+	color: white;
+	margin-top: 14px;
+	margin-left: 10px;
+	font-size: 20px;
+	float: left;
+}
+.answerNumber {
+	color: white;
+	margin: auto;
+	font-size: 20px;
+	padding-top: 14px;
+	padding-left: 8px;
+	font-family: 'Black Ops One', cursive;
+}
+.scoreText {
+	float: right;
+	color: white;
+	font-size: 20px;
+	margin-right: 13px;
+	font-family: 'Black Ops One', cursive;
+	margin-top: 15px;
+}
+@keyframes flipIn{
+	0% {
+		height: 0px;
+	}
+	50% {
+		height: 25px;
+	}
+	100% {
+		height: 50px;
+	}
+}
+
 
