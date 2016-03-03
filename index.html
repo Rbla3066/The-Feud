@@ -155,7 +155,7 @@ function guessAns(){
 		};
 	};
 	if(ansbool == true){
-		$("#info-question").html("Congrats! You got all answers!");
+		$("#info-question").html("");
 		var newScore = parseInt($("#score").html());
 		newScore += 200;
 		$("#score").html(newScore);
@@ -224,7 +224,7 @@ function wrongAnswer(){
 	$("#sounds").html("<audio autoplay><source src='assets/audio/wrong.mp3' type='audio/mp3'></audio>");
 	wrongAnswers++;
 	if(wrongAnswers == 3){
-		$("#info-question").html("Sorry, you got your last strike!");
+		$("#info-question").html("");
 		$("#input").val("");
 		$("#xes").html("[X][X][X]");
 		for(var j=1; j<games[gameNum].length; j++){

@@ -92,14 +92,20 @@ html, body {
 	font-family: 'Black Ops One', cursive;
 	font-size: 36px;
 	position: relative;
-	top: -200px;
+	top: -750px;
+	left: 300px;
 	color: white;
+	z-index: 20;
+	animation-name: phaseIn;
+	animation-duration: 2s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
 }
 .button {
 	color: blue;
 	font-size: 24px;
 	position: relative;
-	top: -200px;
+	top: -300px;
 }
 #logo {
 	margin: auto;
