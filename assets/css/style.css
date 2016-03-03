@@ -16,7 +16,7 @@
 	float: right;
 }
 #container {
-	background-color: purple;
+	background-color: #5b42be;
 	background-size: inherit;
 	height: 900px;
 }
@@ -58,7 +58,7 @@ html, body {
 	color: red;
 	font-weight: bold;
 	z-index: 15;
-	background-color: purple;
+	background-color: #5b42be;
 	width: 160px;
 }
 #info {
@@ -73,6 +73,7 @@ html, body {
 	margin: auto;
 	font-size: 30px;
 	color: white;
+	font-family: 'Bree Serif', serif;
 }
 #input {
 	text-align: center;
@@ -106,6 +107,7 @@ html, body {
 	font-size: 24px;
 	position: relative;
 	top: -300px;
+	font-family: 'Bree Serif', serif;
 }
 #logo {
 	margin: auto;
@@ -129,6 +131,7 @@ html, body {
 	margin-left: 10px;
 	font-size: 18px;
 	float: left;
+	font-family: 'Anton', sans-serif;
 }
 .answerNumber {
 	color: white;
