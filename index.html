@@ -66,7 +66,7 @@ var tude = ["Bad Attitude", 4, false, "bad", "attitude", "temper", "mood"];
 var game9 = ["Name something a wife tells her husband to get rid of.", clothes, pet2, trash, mistress, mags, adult, car2, tude];
 var college = ["School/College", 56, false, "school", "college", "class"];
 var church = ["Church", 26, false, "church", "sunday", "mass", "temple"];
-var family = ["Family Function", 9, false, "family", "together", "party", "birthday"];
+var family = ["Family Function", 9, false, "family", "together", "party", "birthday", "vacation", "grandma's"];
 var doctor = ["Dentist/Doctor", 4, false, "dentist", "doctor"];
 var store = ["Grocery Store", 2, false, "grocery", "store", "market", "mart"];
 var game1 = ["Name someplace a teenager complains about having to go to.", college, church, family, doctor, store];
@@ -90,9 +90,17 @@ var cook2 = ["Cook/Eat Dinner", 3, false, "eat", "cook", "dinner", "lunch"];
 var love = ["Make Love", 2, false, "love", "sex", "whoopie", "bed"];
 var friends = ["Have Friends Over", 2, false, "friends", "party", "together", "over"];
 var game4 = ["What do people do at home on a Saturday night if they can't afford to go out?", movie, vgames, sleep, cook2, love, friends];
-
+var cry = ["Cry", 22, false, "cry", "sob", "weep", "upset"];
+var leave = ["Leave", 22, false, "leave", "move", "leaving"];
+var job = ["Look for a job", 15, false, "look", "job", "another", "find"];
+var tell = ["Tell them Off", 9, false, "yell", "tell", "off", "scream", "fuck"];
+var desk = ["Clean out Desk", 9, false, "clean", "desk", "office"];
+var hit = ["Hit them/Revenge", 6, false, "hit", "punch", "kick", "revenge", "back"];
+var ask = ["Ask/Wonder Why", 4, false, "ask", "why", "wonder", "think"];
+var quit = ["Say 'I Quit'", 3, false, "quit"];
+var game5 = ["What might you do after your boss says, 'You're fired'?", cry, leave, job, tell, desk, hit, ask, quit];
 // then each gameboard is arranged into an array, making the 3D array of games
-var games = [game1, game2, game3, game4, game9, game10];
+var games = [game1, game5, game2, game3, game4, game9, game10];
 var gameNum = 0;
 var wrongAnswers = 0;
 $("#start").click(function() {
