@@ -4,6 +4,7 @@
 	background-image: url(../images/blank.jpg);
 	border-style: solid;
 	border-width: 2px;
+	border-color: gray;
 	text-align: center;
 	color: black;
 	z-index: 15;
@@ -26,10 +27,15 @@
 	margin: auto;
 	border-style: solid;
 	border-width: 2px;
+	border-color: gray;
 	position: relative;
 	z-index: 10;
 	top: -370px;
 	left: 4px;
+	animation-name: phaseIn;
+	animation-duration: 2s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
 }
 html, body {
 	width: 100%;
@@ -53,7 +59,7 @@ html, body {
 	font-weight: bold;
 	z-index: 15;
 	background-color: purple;
-	width: 200px;
+	width: 160px;
 }
 #info {
 	text-align: center;
@@ -106,6 +112,10 @@ html, body {
 #photo {
 	width: 800px;
 	margin: auto;
+	animation-name: phaseIn;
+	animation-duration: 2s;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
 }
 .answerText {
 	color: white;
@@ -121,6 +131,12 @@ html, body {
 	padding-top: 14px;
 	padding-left: 8px;
 	font-family: 'Black Ops One', cursive;
+}
+.exEs {
+	color: white;
+	margin: auto;
+	font-size: 24px;
+	padding-top: 11px;
 }
 .scoreText {
 	float: right;
@@ -139,6 +155,20 @@ html, body {
 	}
 	100% {
 		height: 50px;
+	}
+}
+@keyframes phaseIn{
+	0% {
+		opacity: 0;
+		transform: scale(0.001);
+	}
+	50% {
+		opacity: 0.5;
+		transform: scale(0.5);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
 	}
 }
 

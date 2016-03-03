@@ -103,12 +103,11 @@ function guessAns(){
 	var ansbool = false;
 	var answerArr = ($("#input").val()).split(" ");
 	for(var k=0; k<answerArr.length; k++){
-		debugger;
 		for(var i=1; i<games[gameNum].length; i++){
 			for(var j=3; j<games[gameNum][i].length; j++){
 				if(answerArr[k].toLowerCase() == games[gameNum][i][j] && games[gameNum][i][2] == false){
 					$("#sounds").html("<audio autoplay><source src='assets/audio/right.mp3' type='audio/mp3'></audio>");
-					$("#answer"+(i-1)).html("<div style='height: 50px; animation-name: flipIn; animation-duration: 0.5s; background-image: url(assets/images/answer.jpg)'><p class='answerText'>"+games[gameNum][i][0]+"</p>"+"<p class='scoreText'>"+games[gameNum][i][1]+"</p></div>");
+					$("#answer"+(i-1)).html("<div style='height: 50px; animation-name: flipIn; animation-duration: 0.5s; animation-timing-function: linear; background-image: url(assets/images/answer.jpg)'><p class='answerText'>"+games[gameNum][i][0]+"</p>"+"<p class='scoreText'>"+games[gameNum][i][1]+"</p></div>");
 					$("#clock").html("15");
 					var score = parseInt($("#score").html());
 					score += games[gameNum][i][1];
@@ -168,7 +167,7 @@ function newBoard(){
 		if(i<gameLength){
 			$("#answer"+i).html("<div style='background-image: url(assets/images/unAnswered.jpg); height: 50px; width: 200px'><p class='answerNumber'>"+(i+1)+"</p></div>");
 		} else {
-			$("#answer"+i).html("<div style='background-image: url(assets/images/noAnswer.jpg); height: 50px; width: 200px'><div>");
+			$("#answer"+i).html("<div style='background-image: url(assets/images/noAnswer.jpg); height: 50px; width: 200px'><p class='exEs'>X X X</p><div>");
 		};
 	};
 	$("#input-screen").attr("style", "visibility: hidden");
@@ -202,6 +201,9 @@ function wrongAnswer(){
 		$("#info-question").html("Sorry, you got your last strike!");
 		$("#input").val("");
 		$("#xes").html("[X][X][X]");
+		for(var j=1; j<games[gameNum].length; j++){
+			$("#answer"+(j-1)).html("<div style='height: 50px; background-image: url(assets/images/answer.jpg)'><p class='answerText'>"+games[gameNum][j][0]+"</p><p class='scoreText'>"+games[gameNum][j][1]+"</p></div>");
+		};
 		endGame();
 		return;
 	}
