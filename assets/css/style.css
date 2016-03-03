@@ -177,5 +177,27 @@ html, body {
 		transform: scale(1);
 	}
 }
+@media screen and (max-width: 799px){
+	#photo {
+		display: none;
+	}
+	#board {
+		top: 0;
+	}
+	.button{
+		top: 0;
+	}
+	#info-question{
+		top: 0;
+	}
+	#xes {
+		top: 0;
+	}
+	#score {
+		top: 0;
+		left: 0;
+		padding-top: 8px;
+	}
+}
 
 
